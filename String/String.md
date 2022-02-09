@@ -1,4 +1,4 @@
-# String
+# String 이론
 
 ### String과 Character 기본
 
@@ -76,4 +76,16 @@ var swiftString: String = nsString // 하지만 반대는 불가능
 let swiftString: String = nsString as String // 타입캐스팅으로 저장 가능
 ```
 
+### SubString Type
 
+* 하나의 문자열에서 특정 범위에 있는 문자열을 SubString이라고 한다. 막상 사용하면 String.SubSequence로 표시되는데, typealias로 이름만 붙인거니 두 개는 같은 타입이다. (String.Element가 Character인 것과 같음)
+
+* SubString을 왜 사용할까?
+ 문자열을 처리할 때 메모리를 절약하기 위해서다. Swift3까지는 SubString을 사용하지 않고 그냥 String의 일부를 가지고 새로운 메모리에 등록했다. 하지만 Swift4부터 Copy-on-Write Optimization(최적화)를 지원하며 SubString이라는 것이 생겨났다.  SubString은 새로운 메모리 공간을 사용하지 않고 원본 메모리를 공유해 그 중에 일부 문자만 가리킨다. 이전과 달리 메모리 공간을 절약하며 빠르게 처리하게 된다. 다만 쓰기 작업이 일어날 때 Swift에서는 새로운 메모리를 생성하고 원본 메모리와는 독립적인 공간에서 작업이 수행된다.(즉 insert같은 원본 변경 메서드를 사용해도 원본이 변경되지 않는다) 이렇게 불필요한 복사와 메모리 생성을 최대한 줄여서 코드의 실행 성능을 최적화한 것이다.
+ 
+* Copy-on-Write Optimization(최적화)를 사용하지 않고 새로운 메모리에 바로 생성하고 싶다면?
+
+```swift
+// 생성자로 바로 생성하면 된다.
+let newStr = String(str.prefix(1))
+```
