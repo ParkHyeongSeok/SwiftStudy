@@ -1,16 +1,16 @@
 # GCD
 Grand Central Dispatch, iOS Concurrency Programming의 근간을 이루는 기술.
 
-GCD는 Thread를 자동으로 생성하고 효율적으로 관리한다. 특히 Thread Pool을 통해서 Thread를 재사용하기 때문에 시스템 리소스를 상대적으로 적게 사용하면서 빠른 성능을 유지한다. 그리고 Dispatch framwork를 통해 직관적이고 단순한 API를 제공하며 모든 Apple 플랫폼에서 동일한 API를 사용하는 장점이 있다.
+GCD는 Thread를 ~자동으로 생성하고 효율적으로 관리~한다. 특히 Thread Pool을 통해서 ~Thread를 재사용~하기 때문에 시스템 리소스를 상대적으로 적게 사용하면서 빠른 성능을 유지한다. 그리고 Dispatch framework를 통해 직관적이고 단순한 API를 제공하며 모든 Apple 플랫폼에서 동일한 API를 사용하는 장점이 있다.
 
 ## Dispatch Queue
-GCD의 핵심 객체. Dispatch Queue는 FIFO 방식으로 task를 관리하면서 시스템 상태와 실행 방식에 따라 순서를 제어한다. 이런 모델을 Work Queue Programming Model이라고 하는데, Dispatch Queue에게는 thread에 관한 모든 것을 맡겨두고 task를 구현하는데 집중할 수 있다는 장점이 있다.
+GCD의 핵심 객체. Dispatch Queue는 FIFO 방식으로 task를 관리하면서 시스템 상태와 실행 방식에 따라 순서를 제어한다. 이런 모델을 Work Queue Programming Model이라고 하는데, 프로그래머가 Dispatch Queue에게 thread에 관한 모든 것을 맡겨두고 task를 구현하는데 집중할 수 있다는 장점이 있다.
 
 ### Dispatch Queue에 task를 추가하는 방법
 1. 블럭 형태 : {}
 2. DispatchWorkItem으로 캡슐화해서 추가 : DispatchWorkItem()
 
-### Dispatch Queue가 task를 실행하는 방법
+### Dispatch Queue가 `task를 실행`하는 방법
 1. Concurrent Queue
  추가된 작업을 동시에 실행한다. 동시 실행 작업 수는 시스템 상태에 따라 자동으로 결정. 이 큐는 Concurrent 옵션을 통해서 직접 생성하거나 system이 제공하는 global Dispatch Queue를 사용할 수 있다.
 
